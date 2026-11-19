@@ -202,6 +202,7 @@ select{width:100%;font:inherit;font-size:17px;padding:12px;border:1.5px solid va
 #okOv .ok-x{margin-top:14px;color:var(--mute);font-size:13px}
 @keyframes okDraw{to{stroke-dashoffset:0}}
 @keyframes okPop{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+.dash-head,.dash-chart-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.dash-head{margin-bottom:18px}.dash-head h2{margin:6px 0 4px;font-size:25px}.dash-kicker{font-size:11px;color:var(--brand);font-weight:700;letter-spacing:.15em}.dash-period{width:auto;font-size:14px;padding:9px 14px}.dash-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}.dash-stat{min-width:0;padding:14px;border:1px solid rgba(255,255,255,.17);border-radius:19px;background:rgba(0,0,0,.17);transition:transform .22s,border-color .22s,box-shadow .22s}.dash-stat:hover{transform:translateY(-3px);border-color:rgba(255,201,40,.52);box-shadow:0 10px 24px rgba(0,0,0,.22)}.dash-stat.primary{border-color:rgba(255,201,40,.4);background:linear-gradient(135deg,rgba(255,201,40,.15),rgba(255,255,255,.035))}.dash-stat>span,.dash-stat>b,.dash-stat>small{display:block}.dash-stat>span{color:var(--mute);font-size:13px}.dash-stat>b{margin:10px 0 7px;color:var(--brand);font-size:24px;white-space:nowrap}.dash-stat>small{color:var(--mute);font-size:11px}.dash-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px}.dash-dot.cash{background:#b8d27c}.dash-dot.upi{background:#b59aff}.dash-chart-card{padding:16px 14px 12px;margin:10px 0 18px;border:1px solid rgba(255,255,255,.16);border-radius:22px;background:rgba(0,0,0,.16)}.dash-chart-head h2{font-size:17px;margin:0 0 4px}.dash-chart-head .mute{font-size:12px;margin:0}.dash-chart-caption{font-size:11px;color:var(--mute)}.dash-chart{height:180px;display:flex;align-items:flex-end;gap:7px;padding:20px 4px 0;border-bottom:1px solid rgba(255,255,255,.14)}.dash-bar{position:relative;flex:1;min-width:8px;height:100%;display:flex;align-items:flex-end;justify-content:center}.dash-bar-fill{width:min(28px,70%);min-height:3px;border-radius:8px 8px 2px 2px;background:linear-gradient(0deg,rgba(255,201,40,.46),#ffd95d);box-shadow:0 0 14px rgba(255,201,40,.18);transition:filter .2s,height .25s}.dash-bar:hover .dash-bar-fill{filter:brightness(1.25)}.dash-bar-label{position:absolute;bottom:-19px;left:50%;transform:translateX(-50%);font-size:9px;color:var(--mute);white-space:nowrap}.dash-bar-value{position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:9px;color:var(--ink);white-space:nowrap}.dash-transactions{margin-top:18px}.dash-link{border:1px solid rgba(255,201,40,.35);border-radius:999px;padding:7px 11px;color:var(--brand);background:rgba(255,201,40,.08);font-size:11px}.dash-recent-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 2px;border-bottom:1px solid rgba(255,255,255,.11);font-size:13px}.dash-recent-row:last-child{border-bottom:0}.dash-recent-date{color:var(--mute);font-size:11px}.dash-recent-row b{white-space:nowrap;color:var(--ink)}.dash-empty{padding:18px 0;color:var(--mute);text-align:center;font-size:13px}@media(max-width:420px){.dash-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.dash-stat>b{font-size:21px}.dash-chart{gap:4px}.dash-chart-caption{font-size:9px}}
 @media (prefers-reduced-motion:reduce){#okOv .ok-card{animation:none}}
 </style>
 </head>
@@ -291,6 +292,13 @@ select{width:100%;font:inherit;font-size:17px;padding:12px;border:1.5px solid va
     <div class="actions"><button class="ghost" id="printBtn2"><i class="bi">🖨️</i><b>Print cash bill</b></button></div>
   </div>
 
+  <div class="card tabp" data-tab="dashboard">
+    <div class="dash-head"><div><span class="dash-kicker">SALES OVERVIEW</span><h2>Dashboard</h2><div class="mute">Your store performance at a glance</div></div><select id="dashPeriod" class="dash-period"><option value="week">This week</option><option value="month" selected>This month</option></select></div>
+    <div class="dash-stats"><div class="dash-stat primary"><span>Total sales</span><b id="dashTotal">₹0</b><small id="dashCompare">All paid bills</small></div><div class="dash-stat"><span>Cash collected</span><b id="dashCash">₹0</b><small><i class="dash-dot cash"></i>Cash payments</small></div><div class="dash-stat"><span>UPI payments</span><b id="dashUpi">₹0</b><small><i class="dash-dot upi"></i>Digital payments</small></div><div class="dash-stat"><span>Paid bills</span><b id="dashCount">0</b><small>Completed sales</small></div></div>
+    <div class="dash-chart-card"><div class="dash-chart-head"><div><h2>Sales trend</h2><p class="mute">Weekly and monthly sales</p></div><span class="dash-chart-caption" id="dashChartCaption">By day · This month</span></div><div class="dash-chart" id="dashChart" aria-label="Sales chart"></div></div>
+    <div class="dash-transactions"><div class="dash-chart-head"><div><h2>Recent sales</h2><p class="mute">Your latest paid bills</p></div><button class="dash-link" type="button" onclick="document.querySelector('[data-go=hist]').click()">View history →</button></div><div id="dashRecent"></div></div>
+  </div>
+
   <div class="card tabp" data-tab="hist">
     <h2>Paid bills</h2>
     <div class="chips" id="perChips"><button class="chip on" data-per="all">All</button><button class="chip" data-per="today">Today</button><button class="chip" data-per="week">7 days</button><button class="chip" data-per="month">This month</button></div>
@@ -309,6 +317,7 @@ select{width:100%;font:inherit;font-size:17px;padding:12px;border:1.5px solid va
 <div id="nav">
   <button data-go="bill" class="on"><i>🧾</i><b>Bill</b></button>
   <button data-go="cash"><i>💵</i><b>Cash</b></button>
+  <button data-go="dashboard"><i>📈</i><b>Dashboard</b></button>
   <button data-go="hist"><i>📒</i><b>History</b></button>
 </div>
 
@@ -380,10 +389,33 @@ select{width:100%;font:inherit;font-size:17px;padding:12px;border:1.5px solid va
     return (r>0&&l>0)?{n:curName(),r:r,l:l,a:Math.round(r*l)}:null}
 
   (function(){var st=$('settings'),sb=$('setBtn');function f(){sb.classList.toggle('open',!st.hidden)}f();new MutationObserver(f).observe(st,{attributes:true,attributeFilter:['hidden']})})();
+  function drawDashboard(){
+    if(!$('dashTotal'))return;
+    var mode=$('dashPeriod').value,now=new Date(),start=new Date(now);
+    if(mode==='week')start.setDate(now.getDate()-6);else start=new Date(now.getFullYear(),now.getMonth(),1);
+    var active=hist.filter(function(h){return !h.x&&new Date(h.t)>=start&&new Date(h.t)<=now}),total=0,cash=0,upi=0;
+    active.forEach(function(h){var amount=Number(h.total)||0;total+=amount;if(h.m==='UPI')upi+=amount;else cash+=amount});
+    $('dashTotal').textContent=inr(total);$('dashCash').textContent=inr(cash);$('dashUpi').textContent=inr(upi);$('dashCount').textContent=active.length;
+    $('dashCompare').textContent=mode==='week'?'Last 7 days · paid bills':'This month · paid bills';
+    $('dashChartCaption').textContent=mode==='week'?'By day · Last 7 days':'By month · Last 6 months';
+    var bins=[];
+    if(mode==='week'){
+      for(var d=6;d>=0;d--){var day=new Date(now);day.setDate(now.getDate()-d);day.setHours(0,0,0,0);var end=new Date(day);end.setDate(end.getDate()+1);bins.push({label:day.toLocaleDateString('en-IN',{weekday:'short'}),value:hist.reduce(function(s,h){var t=new Date(h.t);return s+(!h.x&&t>=day&&t<end?(Number(h.total)||0):0)},0)})}
+    }else{
+      for(var m=5;m>=0;m--){var month=new Date(now.getFullYear(),now.getMonth()-m,1),next=new Date(month.getFullYear(),month.getMonth()+1,1);bins.push({label:month.toLocaleDateString('en-IN',{month:'short'}),value:hist.reduce(function(s,h){var t=new Date(h.t);return s+(!h.x&&t>=month&&t<next?(Number(h.total)||0):0)},0)})}
+    }
+    var max=Math.max.apply(null,bins.map(function(b){return b.value}))||1,chart=$('dashChart');chart.innerHTML='';
+    bins.forEach(function(bin){var col=document.createElement('div');col.className='dash-bar';var val=document.createElement('span');val.className='dash-bar-value';val.textContent=bin.value?inr(bin.value):'';var fill=document.createElement('span');fill.className='dash-bar-fill';fill.style.height=Math.max(3,bin.value/max*100)+'%';var label=document.createElement('span');label.className='dash-bar-label';label.textContent=bin.label;col.title=bin.label+': '+inr(bin.value);col.appendChild(val);col.appendChild(fill);col.appendChild(label);chart.appendChild(col)});
+    var recent=hist.filter(function(h){return !h.x}).slice(0,5),list=$('dashRecent');list.innerHTML='';
+    if(!recent.length){var empty=document.createElement('div');empty.className='dash-empty';empty.textContent='No paid sales yet. Completed bills will appear here.';list.appendChild(empty)}
+    recent.forEach(function(h){var row=document.createElement('div');row.className='dash-recent-row';var left=document.createElement('span');left.textContent=(h.c||'Customer')+' · '+(h.m||'Cash');var date=document.createElement('span');date.className='dash-recent-date';date.textContent=new Date(h.t).toLocaleDateString('en-IN',{day:'numeric',month:'short'});var amount=document.createElement('b');amount.textContent=inr(Number(h.total)||0);row.appendChild(left);row.appendChild(date);row.appendChild(amount);list.appendChild(row)});
+  }
+  $('dashPeriod').onchange=drawDashboard;
   function showTab(t){
     document.querySelectorAll('.tabp').forEach(function(e){e.classList.toggle('on',e.getAttribute('data-tab').split(' ').indexOf(t)>=0)});
     document.querySelectorAll('#nav button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-go')===t)});
     document.body.className='t-'+t;
+    if(t==='dashboard')drawDashboard();
     window.scrollTo(0,0);
   }
   document.querySelectorAll('#nav button').forEach(function(b){b.onclick=function(){showTab(b.getAttribute('data-go'))}});
@@ -474,6 +506,7 @@ select{width:100%;font:inherit;font-size:17px;padding:12px;border:1.5px solid va
     var n=Object.keys(sel).length;
     $('selBar').hidden=!hist.length;$('histActions').hidden=!hist.length;$('expBtn').textContent=expLabel();
     $('delSel').textContent='Delete selected ('+n+')';$('delSel').disabled=!n;
+    drawDashboard();
   }
   $('payCash').onclick=function(){var t=total(),g=parseFloat($('given').value);if(g>0&&g<t){cashUI();return}finish('Cash')};
   $('given').addEventListener('input',cashUI);
@@ -898,23 +931,14 @@ select{width:100%;font:inherit;font-size:17px;padding:12px;border:1.5px solid va
   function startSync(){clearInterval(syncT);syncSt('Connecting…');pull(true);syncT=setInterval(function(){if(!document.hidden)pull(false)},20000)}
   document.addEventListener('visibilitychange',function(){if(!document.hidden&&online)pull(false)});
 
-  /* ---- PhonePe auto-confirm payment ---- */
-  var snd=true,actx=null,okT=null,gw=null,gwT=null;
+  /* ---- Payment confirmation sound ---- */
+  var snd=true,okT=null,gw=null,gwT=null;
   try{snd=localStorage.getItem('srfabs_snd')!=='0'}catch(e){}
+  var paymentSound=new Audio('/sounds/payment-confirmed.mp3');paymentSound.preload='auto';
   function sndUI(){$('sndBtn').firstChild.textContent=snd?'🔊':'🔇'}
   $('sndBtn').onclick=function(){snd=!snd;try{localStorage.setItem('srfabs_snd',snd?'1':'0')}catch(e){}sndUI();if(snd)chime()};
   sndUI();
-  function chime(){
-    try{
-      var AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
-      if(!actx)actx=new AC();if(actx.state==='suspended')actx.resume();
-      [[659.25,0],[830.61,.14],[987.77,.28],[1318.5,.46]].forEach(function(n){
-        var o=actx.createOscillator(),g=actx.createGain(),t=actx.currentTime+n[1];
-        o.type='sine';o.frequency.value=n[0];
-        g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.28,t+.02);g.gain.exponentialRampToValueAtTime(.001,t+(n[1]>.4?.9:.4));
-        o.connect(g);g.connect(actx.destination);o.start(t);o.stop(t+1)})
-    }catch(e){}
-  }
+  function chime(){try{paymentSound.currentTime=0;var playback=paymentSound.play();if(playback)playback.catch(function(){})}catch(e){}}
   function approved(amt,method,note){
     $('okAmt').textContent=inr(amt);
     $('okInfo').textContent=(method==='UPI'?'Paid by UPI':'Paid in cash')+(note?' · '+note:'')+' · '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
