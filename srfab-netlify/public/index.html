@@ -118,7 +118,7 @@ button{box-shadow:0 10px 26px rgba(255,201,40,.5),inset 0 2px 0 rgba(255,255,255
 #nav button{flex:1;background:transparent;border:1px solid transparent;box-shadow:none;color:var(--mute);font-size:14px;padding:10px 6px;border-radius:20px}
 #nav button span{display:block;font-size:20px;line-height:1.1}
 #nav button.on{background:linear-gradient(180deg,rgba(255,226,110,.95),rgba(255,201,40,.9));color:var(--brand-ink);border:1px solid rgba(255,255,255,.5);box-shadow:0 4px 14px rgba(255,201,40,.35),inset 0 1px 0 rgba(255,255,255,.7)}
-body.t-cash #warn,body.t-cash #qr,body.t-cash #scanTxt,body.t-cash #payLink,body.t-cash .actions:has(#payUpi),body.t-cash #cashTotal,body.t-cash #cashLbl{display:none!important}
+body.t-cash #gwBox,body.t-cash #warn,body.t-cash #qr,body.t-cash #scanTxt,body.t-cash #payLink,body.t-cash .actions:has(#payUpi),body.t-cash #cashTotal,body.t-cash #cashLbl{display:none!important}
 /* ---- Expanding Icon Pill ---- */
 button,input:not([type=checkbox]),select{border-radius:999px}
 input:not([type=checkbox]),select{padding-left:20px;padding-right:20px}
@@ -270,19 +270,13 @@ select{width:100%;font:inherit;font-size:17px;padding:12px;border:1.5px solid va
     <div class="calc center" id="brk"></div>
     <div class="center mute">Total to pay</div>
     <div class="big" id="total">₹0</div>
-    <div id="warn" class="center warn" hidden>Open Settings and enter your UPI ID to show the QR.</div>
-    <div id="qr" hidden></div>
-    <div class="center mute" id="scanTxt" hidden>Scan with any UPI app</div>
-    <a class="pay" id="payLink" hidden>Pay in a UPI app on this phone</a>
-    <div class="actions"><button id="gwBtn"><i class="bi">📲</i><b>PhonePe auto-confirm QR</b></button></div>
-    <div id="gwBox" class="center" hidden><div id="gwQr" style="display:inline-block;background:#fff;padding:10px;border-radius:12px;margin-top:10px"></div><div class="mute" id="gwSt" style="margin-top:8px"></div><a class="pay" id="gwLink" target="_blank" rel="noopener" hidden>Open payment page on this phone</a><div class="actions"><button class="ghost" id="gwCancel"><b>Cancel payment</b></button></div></div>
+    <div id="gwBox" class="center" hidden><div id="gwQr" style="display:inline-block;background:#fff;padding:10px;border-radius:12px;margin-top:10px"></div><div class="mute" id="gwSt" style="margin-top:8px"></div><a class="pay" id="gwLink" target="_blank" rel="noopener" hidden>Pay in PhonePe on this phone</a></div>
     <label style="margin-top:12px">Customer name – optional</label>
     <input class="small" id="cust" type="text" autocomplete="off" placeholder="Name">
     <label style="margin-top:12px">Customer WhatsApp no. – optional</label>
     <input class="small" id="wa" type="tel" inputmode="tel" placeholder="98XXXXXXXX">
     <div class="actions"><button class="ghost" id="shareBtn"><i class="bi wlogo"></i><b>Send bill on WhatsApp</b></button></div>
     <div class="actions"><button class="ghost" id="printBtn"><i class="bi">🖨️</i><b>Print bill</b></button></div>
-    <div class="actions"><button id="payUpi"><i class="bi">✅</i><b>Paid by UPI</b></button></div>
     <div class="actions"><button class="ghost" id="clearBtn"><i class="bi">🧹</i><b>New bill</b></button></div>
   </div>
 
@@ -408,18 +402,7 @@ select{width:100%;font:inherit;font-size:17px;padding:12px;border:1.5px solid va
     var sb=sub(),dp=disc(),total=Math.round(sb*(1-dp/100));
     $("brk").textContent=(dp>0&&sb>0)?("Subtotal "+inr(sb)+" − Discount "+dp+"% ("+inr(sb-total)+")"):"";
     $("total").textContent=inr(total);
-    var ok=S.upi&&total>0;
-    $("warn").hidden=!!S.upi;
-    $("qr").hidden=!ok;$("scanTxt").hidden=!ok;$("payLink").hidden=!ok;
-    if(ok){
-      var url="upi://pay?pa="+encodeURIComponent(S.upi)+"&pn="+encodeURIComponent(S.shop||"Shop")+
-        "&am="+total.toFixed(2)+"&cu=INR&tn="+encodeURIComponent("Cloth purchase");
-      $("payLink").href=url;
-      try{
-        if(!qr)qr=new QRCode($("qr"),{text:url,width:220,height:220,correctLevel:QRCode.CorrectLevel.M});
-        else qr.makeCode(url);
-      }catch(e){}
-    }
+    gwSchedule();
   }
 
   try{hist=JSON.parse(localStorage.getItem('srfabs_hist')||'[]')}catch(e){hist=[]}
@@ -431,7 +414,7 @@ select{width:100%;font:inherit;font-size:17px;padding:12px;border:1.5px solid va
     var t=total(),g=parseFloat($('given').value);
     $('cashTotal').textContent=inr(t);
     $('change').textContent=(t>0&&g>0)?(g>=t?'Return change: '+inr(Math.round((g-t)*100)/100):'Short by '+inr(Math.round((t-g)*100)/100)):'';
-    $('gwBtn').disabled=t<=0||!!gw;$('payUpi').disabled=$('payCash').disabled=$('shareBtn').disabled=$('printBtn').disabled=$('printBtn2').disabled=t<=0;
+    $('payCash').disabled=$('shareBtn').disabled=$('printBtn').disabled=$('printBtn2').disabled=t<=0;
   }
 
   function pad(n){return ('000'+n).slice(-4)}
@@ -492,7 +475,6 @@ select{width:100%;font:inherit;font-size:17px;padding:12px;border:1.5px solid va
     $('selBar').hidden=!hist.length;$('histActions').hidden=!hist.length;$('expBtn').textContent=expLabel();
     $('delSel').textContent='Delete selected ('+n+')';$('delSel').disabled=!n;
   }
-  $('payUpi').onclick=function(){finish('UPI')};
   $('payCash').onclick=function(){var t=total(),g=parseFloat($('given').value);if(g>0&&g<t){cashUI();return}finish('Cash')};
   $('given').addEventListener('input',cashUI);
   $('disc').addEventListener('input',render);
@@ -909,7 +891,7 @@ select{width:100%;font:inherit;font-size:17px;padding:12px;border:1.5px solid va
       var map={};d.bills.forEach(function(b){if(b&&b.t)map[b.t]=b});
       if(first)hist.forEach(function(h){if(!map[h.t]){map[h.t]=h;pushBill(h)}});
       hist=Object.keys(map).map(function(k){return map[k]}).sort(function(a,b){return b.t-a.t});
-      numberAll();saveHist();renderHist();
+      numberAll();saveHist();renderHist();gwSchedule();
       syncSt('☁ Synced '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}));
     }catch(e){if(e.status!==401)syncSt('⚠ Can’t reach the server – showing this phone’s data')}
   }
@@ -942,31 +924,56 @@ select{width:100%;font:inherit;font-size:17px;padding:12px;border:1.5px solid va
     clearTimeout(okT);okT=setTimeout(function(){$('okOv').classList.remove('on')},5000);
   }
   $('okOv').onclick=function(){clearTimeout(okT);$('okOv').classList.remove('on')};
-  function gwStop(){clearInterval(gwT);gwT=null;gw=null;$('gwBox').hidden=true;$('gwBtn').disabled=total()<=0}
-  $('gwCancel').onclick=gwStop;
-  $('gwBtn').onclick=async function(){
-    var t=total();if(t<=0||gw)return;
-    $('gwBtn').disabled=true;$('gwBox').hidden=false;$('gwQr').innerHTML='';$('gwLink').hidden=true;$('gwSt').textContent='Creating payment…';
+  var gwOrders={},gwCur=null,gwDeb=null,gwPollT=null;
+  function gwShow(msg){
+    var box=$('gwBox'),t=total(),o=gwCur&&gwOrders[gwCur];
+    if(t<1){box.hidden=true;return}
+    box.hidden=false;
+    if(msg||!o){
+      $('gwQr').innerHTML='';$('gwQr').style.display='none';$('gwLink').hidden=true;
+      $('gwSt').textContent=msg||'Preparing payment QR…';return}
+    if($('gwQr').getAttribute('data-id')!==o.id){
+      $('gwQr').innerHTML='';
+      try{new QRCode($('gwQr'),{text:o.url,width:220,height:220,correctLevel:QRCode.CorrectLevel.M})}catch(e){}
+      $('gwQr').setAttribute('data-id',o.id)}
+    $('gwQr').style.display='inline-block';
+    $('gwLink').href=o.url;$('gwLink').hidden=false;
+    $('gwSt').textContent='Scan to pay '+inr(o.amt)+' – this bill saves by itself when paid';
+  }
+  function gwSchedule(){
+    clearTimeout(gwDeb);
+    var t=total();
+    if(t<1){gwCur=null;$('gwQr').removeAttribute('data-id');gwShow();return}
+    var o=gwCur&&gwOrders[gwCur];
+    if(o&&o.amt===t&&!o.done&&Date.now()-o.at<540000){gwShow();return}
+    if(!online){gwCur=null;gwShow('Connecting…');return}
+    gwCur=null;gwShow();
+    gwDeb=setTimeout(gwCreate,900);
+  }
+  async function gwCreate(){
+    var t=total();if(t<1||!online)return;
     try{
       var r=await api('pay/create',{method:'POST',body:{amount:t}});
-      gw={id:r.merchantOrderId,amt:t,cn:$('cust').value.trim()};
-      $('gwLink').href=r.redirectUrl;$('gwLink').hidden=false;
-      new QRCode($('gwQr'),{text:r.redirectUrl,width:220,height:220,correctLevel:QRCode.CorrectLevel.M});
-      $('gwSt').textContent='Waiting for payment of '+inr(t)+'…';
-      gwT=setInterval(gwPoll,3000);
-    }catch(e){$('gwSt').textContent='Could not create the payment: '+(e.message||'error');$('gwBtn').disabled=false}
-  };
+      gwOrders[r.merchantOrderId]={id:r.merchantOrderId,amt:t,url:r.redirectUrl,at:Date.now(),done:false};
+      if(!gwPollT)gwPollT=setInterval(gwPoll,3000);
+      if(total()===t){gwCur=r.merchantOrderId;gwShow()}else gwSchedule();
+    }catch(e){gwShow('Could not create the QR: '+(e.message||'error')+' – tap here to retry')}
+  }
+  $('gwSt').onclick=function(){if(!gwCur)gwSchedule()};
   async function gwPoll(){
-    var g=gw;if(!g)return;
-    try{
-      var r=await api('pay/status/'+encodeURIComponent(g.id));
-      if(gw!==g)return;
-      if(r.state==='COMPLETED'){
-        gwStop();
-        if(total()===g.amt){finish('UPI');approved(g.amt,'UPI',g.cn)}
-        else approved(g.amt,'UPI','Bill was changed – record this payment manually');
-      }else if(r.state==='FAILED'){gwStop();$('gwBox').hidden=false;$('gwSt').textContent='Payment failed. Create a new QR.'}
-    }catch(e){}
+    var ids=Object.keys(gwOrders).filter(function(k){var o=gwOrders[k];return !o.done&&Date.now()-o.at<720000});
+    if(!ids.length){clearInterval(gwPollT);gwPollT=null;return}
+    for(var i=0;i<ids.length;i++){
+      var o=gwOrders[ids[i]];
+      try{
+        var r=await api('pay/status/'+encodeURIComponent(o.id));
+        if(r.state==='COMPLETED'&&!o.done){
+          o.done=true;
+          if(total()===o.amt){var cn=$('cust').value.trim();finish('UPI');approved(o.amt,'UPI',cn)}
+          else approved(o.amt,'UPI','Bill was changed – record this payment manually');
+        }else if(r.state==='FAILED'){o.done=true;if(gwCur===o.id){gwCur=null;gwSchedule()}}
+      }catch(e){}
+    }
   }
   if(TOK)startSync();
 })();
