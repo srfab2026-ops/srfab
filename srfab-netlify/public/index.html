@@ -202,9 +202,51 @@ select{width:100%;font:inherit;font-size:17px;padding:12px;border:1.5px solid va
 #okOv .ok-x{margin-top:14px;color:var(--mute);font-size:13px}
 @keyframes okDraw{to{stroke-dashoffset:0}}
 @keyframes okPop{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
-.dash-head,.dash-chart-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.dash-head{margin-bottom:18px}.dash-head h2{margin:6px 0 4px;font-size:25px}.dash-kicker{font-size:11px;color:var(--brand);font-weight:700;letter-spacing:.15em}.dash-period{width:auto;font-size:14px;padding:9px 14px}.dash-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}.dash-stat{min-width:0;padding:14px;border:1px solid rgba(255,255,255,.17);border-radius:19px;background:rgba(0,0,0,.17);transition:transform .22s,border-color .22s,box-shadow .22s}.dash-stat:hover{transform:translateY(-3px);border-color:rgba(255,201,40,.52);box-shadow:0 10px 24px rgba(0,0,0,.22)}.dash-stat.primary{border-color:rgba(255,201,40,.4);background:linear-gradient(135deg,rgba(255,201,40,.15),rgba(255,255,255,.035))}.dash-stat>span,.dash-stat>b,.dash-stat>small{display:block}.dash-stat>span{color:var(--mute);font-size:13px}.dash-stat>b{margin:10px 0 7px;color:var(--brand);font-size:24px;white-space:nowrap}.dash-stat>small{color:var(--mute);font-size:11px}.dash-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px}.dash-dot.cash{background:#b8d27c}.dash-dot.upi{background:#b59aff}.dash-chart-card{padding:16px 14px 12px;margin:10px 0 18px;border:1px solid rgba(255,255,255,.16);border-radius:22px;background:rgba(0,0,0,.16)}.dash-chart-head h2{font-size:17px;margin:0 0 4px}.dash-chart-head .mute{font-size:12px;margin:0}.dash-chart-caption{font-size:11px;color:var(--mute)}.dash-chart{height:180px;display:flex;align-items:flex-end;gap:7px;padding:20px 4px 0;border-bottom:1px solid rgba(255,255,255,.14)}.dash-bar{position:relative;flex:1;min-width:8px;height:100%;display:flex;align-items:flex-end;justify-content:center}.dash-bar-fill{width:min(28px,70%);min-height:3px;border-radius:8px 8px 2px 2px;background:linear-gradient(0deg,rgba(255,201,40,.46),#ffd95d);box-shadow:0 0 14px rgba(255,201,40,.18);transition:filter .2s,height .25s}.dash-bar:hover .dash-bar-fill{filter:brightness(1.25)}.dash-bar-label{position:absolute;bottom:-19px;left:50%;transform:translateX(-50%);font-size:9px;color:var(--mute);white-space:nowrap}.dash-bar-value{position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:9px;color:var(--ink);white-space:nowrap}.dash-transactions{margin-top:18px}.dash-link{border:1px solid rgba(255,201,40,.35);border-radius:999px;padding:7px 11px;color:var(--brand);background:rgba(255,201,40,.08);font-size:11px}.dash-recent-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 2px;border-bottom:1px solid rgba(255,255,255,.11);font-size:13px}.dash-recent-row:last-child{border-bottom:0}.dash-recent-date{color:var(--mute);font-size:11px}.dash-recent-row b{white-space:nowrap;color:var(--ink)}.dash-empty{padding:18px 0;color:var(--mute);text-align:center;font-size:13px}@media(max-width:420px){.dash-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.dash-stat>b{font-size:21px}.dash-chart{gap:4px}.dash-chart-caption{font-size:9px}}
-.sheets-connect-card{display:grid;grid-template-columns:1fr auto;align-items:center;gap:7px;margin-top:16px;padding:13px;border:1px solid rgba(255,255,255,.16);border-radius:18px;background:rgba(0,0,0,.18)}.sheets-connect-card b,.sheets-connect-card small{display:block}.sheets-connect-card b{font-size:15px;color:var(--ink)}.sheets-connect-card small{margin-top:4px;color:var(--mute);font-size:11px}.sheets-connect-card button{margin:0;font-size:12px}.sheets-connect-card a{grid-column:1/-1;color:var(--brand);font-size:12px}.sheets-connect-card button[hidden],.sheets-connect-card a[hidden]{display:none}
 @media (prefers-reduced-motion:reduce){#okOv .ok-card{animation:none}}
+
+/* ---- Dashboard ---- */
+.dquick{display:flex;gap:8px;margin:0 0 12px}
+.dq{flex:1;padding:10px 8px;text-align:center;border-radius:18px;background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.22);transition:transform .25s,box-shadow .25s}
+.dq:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 8px 22px rgba(255,201,40,.25)}
+.dq b{display:block;color:var(--brand);font-size:17px;margin-top:2px}
+.dq span{font-size:12px;color:#f1e5b0}
+.dgrid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.dtile{position:relative;padding:12px 14px;border-radius:22px;background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.22);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);cursor:pointer;transition:transform .3s cubic-bezier(.2,1.2,.4,1),box-shadow .3s,border-color .3s}
+.dtile:hover,.dtile.open{transform:translateY(-3px) scale(1.03);box-shadow:0 10px 26px rgba(255,201,40,.28);border-color:rgba(255,226,110,.7);z-index:2}
+.dtile .dl{font-size:13px;color:#f1e5b0;display:flex;align-items:center;gap:6px}
+.dtile .dv{font-size:24px;font-weight:700;color:var(--brand);margin-top:2px}
+.dtile .dx{max-height:0;opacity:0;overflow:hidden;font-size:13px;color:#f1e5b0;line-height:1.5;transition:max-height .35s ease,opacity .3s ease,margin .3s}
+.dtile:hover .dx,.dtile.open .dx{max-height:90px;opacity:1;margin-top:6px}
+.dtile.wide{grid-column:1/-1}
+.ddot{display:inline-block;width:10px;height:10px;border-radius:50%}
+.cU{background:#ffc928}.cC{background:#ff8a3d}
+.dlegend{display:flex;gap:14px;font-size:13px;color:#f1e5b0;margin:0 0 8px}
+.ddonut{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center}
+.ddonut svg{width:170px;height:170px;flex:none}
+.dcirc{fill:none;stroke-width:16;transition:stroke-width .25s;cursor:pointer;transform:rotate(-90deg);transform-origin:70px 70px}
+.dcirc.hot{stroke-width:24}
+.drow{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:16px;cursor:pointer;border:1px solid transparent;transition:background .2s,transform .2s,border-color .2s;font-size:15px}
+.drow:hover,.drow.hot{background:rgba(255,255,255,.1);border-color:rgba(255,226,110,.5);transform:translateX(4px)}
+.dchart{position:relative;margin-top:6px}
+.dgrid{position:absolute;left:36px;right:0;bottom:22px;height:150px;pointer-events:none}
+.dgl{position:absolute;left:0;right:0;border-top:1px dashed rgba(255,255,255,.14)}
+.dgl span{position:absolute;left:-36px;top:-8px;font-size:11px;color:var(--mute)}
+.dbars{position:relative;margin-left:36px;height:188px;display:flex;align-items:flex-end;gap:5px}
+.dcol{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;cursor:pointer;transition:flex .35s cubic-bezier(.2,1.2,.4,1)}
+.dcol.on{flex:2.6}
+.dval{height:16px;font-size:11px;color:var(--brand);opacity:0;transition:opacity .2s;white-space:nowrap}
+.dcol.on .dval{opacity:1}
+.dbar{width:100%;display:flex;flex-direction:column;border-radius:9px 9px 3px 3px;overflow:hidden;opacity:.72;transition:opacity .25s,box-shadow .25s,transform .25s;transform-origin:bottom}
+.dcol.on .dbar{opacity:1;box-shadow:0 0 18px rgba(255,201,40,.45);transform:scaleY(1.02)}
+.dbar i{display:block;width:100%}
+.dbar .dcI{background:linear-gradient(180deg,#ffa35c,#ff8a3d)}
+.dbar .duI{background:linear-gradient(180deg,#ffe26e,#ffc928)}
+.dlab{height:22px;font-size:12px;color:var(--mute);padding-top:5px;white-space:nowrap}
+.dcol.on .dlab{color:var(--brand);font-weight:700}
+.dinfo{margin-top:12px;padding:12px 14px;border-radius:20px;background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.04));border:1px solid rgba(255,226,110,.45);font-size:15px;line-height:1.6;color:#f1e5b0;animation:dIn .3s ease}
+.dinfo b.t{color:var(--brand);font-size:18px}
+@keyframes dIn{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.dcol,.dtile,.dq,.drow,.dinfo{transition:none;animation:none}}
 </style>
 </head>
 <body class="t-bill">
@@ -232,7 +274,6 @@ select{width:100%;font:inherit;font-size:17px;padding:12px;border:1.5px solid va
     <input class="small" id="sphone" type="tel" autocomplete="off" placeholder="Phone number">
     <label style="margin-top:12px">Shop link for WhatsApp bill (optional)</label>
     <input class="small" id="link" type="url" autocomplete="off" placeholder="https://… (Instagram, Google Maps, website)">
-    <div class="sheets-connect-card"><div><b>Google Sheets</b><small id="sheetsStatus">Checking connection…</small></div><button class="ghost" id="sheetsConnect" type="button">Connect Google</button><a id="sheetsOpen" target="_blank" rel="noopener" hidden>Open spreadsheet ↗</a><button class="ghost" id="sheetsDisconnect" type="button" hidden>Disconnect</button></div>
     <label style="margin-top:12px">Print size (this phone)</label>
     <select id="paper"><option value="a4">A4 page</option><option value="80">Receipt – 80 mm</option><option value="58">Receipt – 58 mm</option></select>
     <label style="margin-top:12px">Cloth list (name and fixed rate per metre)</label>
@@ -251,6 +292,14 @@ select{width:100%;font:inherit;font-size:17px;padding:12px;border:1.5px solid va
     <div class="err" id="rcSetMsg"></div>
     <div class="actions"><button class="ghost" id="rcSetBtn"><i class="bi">🛟</i><b>Change recovery code</b></button></div>
     </div>
+    <label style="margin-top:16px">Backup</label>
+    <div class="actions"><button class="ghost" id="bkBtn"><i class="bi">💾</i><b>Download full backup</b></button><button class="ghost" id="rsBtn"><i class="bi">♻️</i><b>Restore backup</b></button></div>
+    <input type="file" id="rsFile" accept=".json,application/json" hidden>
+    <div class="mute" id="bkMsg" style="margin-top:6px"></div>
+    <label style="margin-top:16px">Auto-save backup to this PC</label>
+    <div class="mute">Chrome or Edge on a computer. Choose one file once. It is overwritten every time something changes and when you close the page, so there is always just one file.</div>
+    <div class="actions"><button class="ghost" id="bkPick"><i class="bi">📁</i><b>Choose backup file</b></button><button class="ghost" id="bkStop" hidden><i class="bi">⏹️</i><b>Stop auto-save</b></button></div>
+    <div class="mute" id="bkAuto" style="margin-top:6px"></div>
     <div class="mute" style="margin-top:14px">Login mobile number and password are set in Netlify (Site settings → Environment variables).</div>
     <div class="actions"><button id="saveSet"><i class="bi">💾</i><b>Save</b></button></div>
   </div>
@@ -294,11 +343,44 @@ select{width:100%;font:inherit;font-size:17px;padding:12px;border:1.5px solid va
     <div class="actions"><button class="ghost" id="printBtn2"><i class="bi">🖨️</i><b>Print cash bill</b></button></div>
   </div>
 
-  <div class="card tabp" data-tab="dashboard">
-    <div class="dash-head"><div><span class="dash-kicker">SALES OVERVIEW</span><h2>Dashboard</h2><div class="mute">Your store performance at a glance</div></div><select id="dashPeriod" class="dash-period"><option value="week">This week</option><option value="month" selected>This month</option></select></div>
-    <div class="dash-stats"><div class="dash-stat primary"><span>Total sales</span><b id="dashTotal">₹0</b><small id="dashCompare">All paid bills</small></div><div class="dash-stat"><span>Cash collected</span><b id="dashCash">₹0</b><small><i class="dash-dot cash"></i>Cash payments</small></div><div class="dash-stat"><span>UPI payments</span><b id="dashUpi">₹0</b><small><i class="dash-dot upi"></i>Digital payments</small></div><div class="dash-stat"><span>Paid bills</span><b id="dashCount">0</b><small>Completed sales</small></div></div>
-    <div class="dash-chart-card"><div class="dash-chart-head"><div><h2>Sales trend</h2><p class="mute">Weekly and monthly sales</p></div><span class="dash-chart-caption" id="dashChartCaption">By day · This month</span></div><div class="dash-chart" id="dashChart" aria-label="Sales chart"></div></div>
-    <div class="dash-transactions"><div class="dash-chart-head"><div><h2>Recent sales</h2><p class="mute">Your latest paid bills</p></div><button class="dash-link" type="button" onclick="document.querySelector('[data-go=hist]').click()">View history →</button></div><div id="dashRecent"></div></div>
+  <div class="card tabp" data-tab="dash">
+    <h2>📊 Dashboard</h2>
+    <div class="dquick">
+      <div class="dq"><span>Today</span><b id="dToday">₹0</b></div>
+      <div class="dq"><span>This month</span><b id="dMonth">₹0</b></div>
+      <div class="dq"><span>All time</span><b id="dAll">₹0</b></div>
+    </div>
+    <div class="chips" id="dRange"><button class="chip" data-r="3">3 months</button><button class="chip on" data-r="6">6 months</button><button class="chip" data-r="12">12 months</button></div>
+    <div class="dgrid2">
+      <div class="dtile wide" data-t="tot"><div class="dl">💰 Total sales</div><div class="dv" id="dTot">₹0</div><div class="dx" id="dTotX"></div></div>
+      <div class="dtile" data-t="upi"><div class="dl"><span class="ddot cU"></span>UPI</div><div class="dv" id="dUpi">₹0</div><div class="dx" id="dUpiX"></div></div>
+      <div class="dtile" data-t="cash"><div class="dl"><span class="ddot cC"></span>Cash</div><div class="dv" id="dCash">₹0</div><div class="dx" id="dCashX"></div></div>
+    </div>
+    <div class="mute center" id="dEmpty" style="margin-top:10px" hidden>No paid bills in this period yet.</div>
+  </div>
+
+  <div class="card tabp" data-tab="dash">
+    <h2>Cash vs UPI</h2>
+    <div class="ddonut">
+      <svg viewBox="0 0 140 140" aria-label="Cash and UPI share">
+        <circle cx="70" cy="70" r="52" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="16"/>
+        <circle class="dcirc" id="dcU" cx="70" cy="70" r="52" stroke="#ffc928" data-seg="upi"/>
+        <circle class="dcirc" id="dcC" cx="70" cy="70" r="52" stroke="#ff8a3d" data-seg="cash"/>
+        <text x="70" y="66" text-anchor="middle" id="dcT1" fill="#f1e5b0" font-size="11">Total</text>
+        <text x="70" y="86" text-anchor="middle" id="dcT2" fill="#ffc928" font-size="17" font-weight="700">₹0</text>
+      </svg>
+      <div>
+        <div class="drow" data-seg="upi"><span class="ddot cU"></span><span id="dlU">UPI</span></div>
+        <div class="drow" data-seg="cash"><span class="ddot cC"></span><span id="dlC">Cash</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card tabp" data-tab="dash">
+    <h2>Monthly sales</h2>
+    <div class="dlegend"><span><span class="ddot cU"></span> UPI</span><span><span class="ddot cC"></span> Cash</span></div>
+    <div class="dchart"><div class="dgrid" id="dGrid"></div><div class="dbars" id="dBars"></div></div>
+    <div class="dinfo" id="dInfo"></div>
   </div>
 
   <div class="card tabp" data-tab="hist">
@@ -319,8 +401,8 @@ select{width:100%;font:inherit;font-size:17px;padding:12px;border:1.5px solid va
 <div id="nav">
   <button data-go="bill" class="on"><i>🧾</i><b>Bill</b></button>
   <button data-go="cash"><i>💵</i><b>Cash</b></button>
-  <button data-go="dashboard"><i>📈</i><b>Dashboard</b></button>
   <button data-go="hist"><i>📒</i><b>History</b></button>
+  <button data-go="dash"><i>📊</i><b>Dashboard</b></button>
 </div>
 
 <div id="login"><div class="card" style="width:100%;max-width:380px;margin:0">
@@ -391,33 +473,11 @@ select{width:100%;font:inherit;font-size:17px;padding:12px;border:1.5px solid va
     return (r>0&&l>0)?{n:curName(),r:r,l:l,a:Math.round(r*l)}:null}
 
   (function(){var st=$('settings'),sb=$('setBtn');function f(){sb.classList.toggle('open',!st.hidden)}f();new MutationObserver(f).observe(st,{attributes:true,attributeFilter:['hidden']})})();
-  function drawDashboard(){
-    if(!$('dashTotal'))return;
-    var mode=$('dashPeriod').value,now=new Date(),start=new Date(now);
-    if(mode==='week')start.setDate(now.getDate()-6);else start=new Date(now.getFullYear(),now.getMonth(),1);
-    var active=hist.filter(function(h){return !h.x&&new Date(h.t)>=start&&new Date(h.t)<=now}),total=0,cash=0,upi=0;
-    active.forEach(function(h){var amount=Number(h.total)||0;total+=amount;if(h.m==='UPI')upi+=amount;else cash+=amount});
-    $('dashTotal').textContent=inr(total);$('dashCash').textContent=inr(cash);$('dashUpi').textContent=inr(upi);$('dashCount').textContent=active.length;
-    $('dashCompare').textContent=mode==='week'?'Last 7 days · paid bills':'This month · paid bills';
-    $('dashChartCaption').textContent=mode==='week'?'By day · Last 7 days':'By month · Last 6 months';
-    var bins=[];
-    if(mode==='week'){
-      for(var d=6;d>=0;d--){var day=new Date(now);day.setDate(now.getDate()-d);day.setHours(0,0,0,0);var end=new Date(day);end.setDate(end.getDate()+1);bins.push({label:day.toLocaleDateString('en-IN',{weekday:'short'}),value:hist.reduce(function(s,h){var t=new Date(h.t);return s+(!h.x&&t>=day&&t<end?(Number(h.total)||0):0)},0)})}
-    }else{
-      for(var m=5;m>=0;m--){var month=new Date(now.getFullYear(),now.getMonth()-m,1),next=new Date(month.getFullYear(),month.getMonth()+1,1);bins.push({label:month.toLocaleDateString('en-IN',{month:'short'}),value:hist.reduce(function(s,h){var t=new Date(h.t);return s+(!h.x&&t>=month&&t<next?(Number(h.total)||0):0)},0)})}
-    }
-    var max=Math.max.apply(null,bins.map(function(b){return b.value}))||1,chart=$('dashChart');chart.innerHTML='';
-    bins.forEach(function(bin){var col=document.createElement('div');col.className='dash-bar';var val=document.createElement('span');val.className='dash-bar-value';val.textContent=bin.value?inr(bin.value):'';var fill=document.createElement('span');fill.className='dash-bar-fill';fill.style.height=Math.max(3,bin.value/max*100)+'%';var label=document.createElement('span');label.className='dash-bar-label';label.textContent=bin.label;col.title=bin.label+': '+inr(bin.value);col.appendChild(val);col.appendChild(fill);col.appendChild(label);chart.appendChild(col)});
-    var recent=hist.filter(function(h){return !h.x}).slice(0,5),list=$('dashRecent');list.innerHTML='';
-    if(!recent.length){var empty=document.createElement('div');empty.className='dash-empty';empty.textContent='No paid sales yet. Completed bills will appear here.';list.appendChild(empty)}
-    recent.forEach(function(h){var row=document.createElement('div');row.className='dash-recent-row';var left=document.createElement('span');left.textContent=(h.c||'Customer')+' · '+(h.m||'Cash');var date=document.createElement('span');date.className='dash-recent-date';date.textContent=new Date(h.t).toLocaleDateString('en-IN',{day:'numeric',month:'short'});var amount=document.createElement('b');amount.textContent=inr(Number(h.total)||0);row.appendChild(left);row.appendChild(date);row.appendChild(amount);list.appendChild(row)});
-  }
-  $('dashPeriod').onchange=drawDashboard;
   function showTab(t){
     document.querySelectorAll('.tabp').forEach(function(e){e.classList.toggle('on',e.getAttribute('data-tab').split(' ').indexOf(t)>=0)});
     document.querySelectorAll('#nav button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-go')===t)});
     document.body.className='t-'+t;
-    if(t==='dashboard')drawDashboard();
+    if(t==='dash')renderDash();
     window.scrollTo(0,0);
   }
   document.querySelectorAll('#nav button').forEach(function(b){b.onclick=function(){showTab(b.getAttribute('data-go'))}});
@@ -469,7 +529,7 @@ select{width:100%;font:inherit;font-size:17px;padding:12px;border:1.5px solid va
     var t=total();if(t<=0)return;
     var c=cur(),list=items.slice();if(c)list.push(c);
     hist.unshift({t:Date.now(),no:nextNo(),w:$('wa').value.trim(),m:method,total:t,sub:sub(),d:disc(),c:$('cust').value.trim(),items:list.map(function(x){return {n:x.n||'',l:x.l,r:x.r,a:x.a}})});
-    saveHist();pushBill(hist[0]);queueSheetBill(hist[0]);items=[];$('len').value='';$('given').value='';$('disc').value='';$('wa').value='';$('cust').value='';$('len').focus();renderHist();render();showTab('bill');
+    saveHist();pushBill(hist[0]);items=[];$('len').value='';$('given').value='';$('disc').value='';$('wa').value='';$('cust').value='';$('len').focus();renderHist();render();showTab('bill');
   }
   var per='all',pay='all',fdate='';
   function match(h){
@@ -508,7 +568,6 @@ select{width:100%;font:inherit;font-size:17px;padding:12px;border:1.5px solid va
     var n=Object.keys(sel).length;
     $('selBar').hidden=!hist.length;$('histActions').hidden=!hist.length;$('expBtn').textContent=expLabel();
     $('delSel').textContent='Delete selected ('+n+')';$('delSel').disabled=!n;
-    drawDashboard();
   }
   $('payCash').onclick=function(){var t=total(),g=parseFloat($('given').value);if(g>0&&g<t){cashUI();return}finish('Cash')};
   $('given').addEventListener('input',cashUI);
@@ -656,6 +715,142 @@ select{width:100%;font:inherit;font-size:17px;padding:12px;border:1.5px solid va
   $('dayDate').oninput=dayUI;$('dayCash').oninput=dayUI;
   $('dayClose').onclick=function(){$('dayOv').classList.remove('on')};
   $('dayWa').onclick=function(){openWA('',dayText())};
+
+  /* ---- Dashboard ---- */
+  var dRange=6,dSel=-1,dM=[],MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function mkey(t){var d=new Date(t);return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)}
+  function short(n){n=Math.round(n);var f=function(v,x){return (Math.round(v*10)/10).toString().replace(/\.0$/,'')+x};
+    return n>=1e7?f(n/1e7,'Cr'):n>=1e5?f(n/1e5,'L'):n>=1e3?f(n/1e3,'K'):String(n)}
+  function pct(a,b){return b>0?Math.round(a/b*100):0}
+  function dashData(){
+    var now=new Date(),M=[],map={},i;
+    for(i=dRange-1;i>=0;i--){var d=new Date(now.getFullYear(),now.getMonth()-i,1),k=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2);
+      var m={l:MN[d.getMonth()],y:d.getFullYear(),u:0,c:0,un:0,cn:0};M.push(m);map[k]=m}
+    var td=dkey(Date.now()),tm=mkey(Date.now()),T={today:0,month:0,all:0};
+    hist.forEach(function(h){
+      if(h.x)return;T.all+=h.total;if(dkey(h.t)===td)T.today+=h.total;if(mkey(h.t)===tm)T.month+=h.total;
+      var m=map[mkey(h.t)];if(!m)return;
+      if(h.m==='UPI'){m.u+=h.total;m.un++}else{m.c+=h.total;m.cn++}});
+    return {M:M,T:T}}
+  function segHot(seg){
+    $('dcU').classList.toggle('hot',seg==='upi');$('dcC').classList.toggle('hot',seg==='cash');
+    document.querySelectorAll('.drow').forEach(function(r){r.classList.toggle('hot',r.getAttribute('data-seg')===seg)});
+    var D=dashSums();
+    if(seg==='upi'){$('dcT1').textContent='UPI '+pct(D.u,D.u+D.c)+'%';$('dcT2').textContent=inr(D.u)}
+    else if(seg==='cash'){$('dcT1').textContent='Cash '+pct(D.c,D.u+D.c)+'%';$('dcT2').textContent=inr(D.c)}
+    else{$('dcT1').textContent='Total';$('dcT2').textContent=inr(D.u+D.c)}}
+  function dashSums(){var u=0,c=0,un=0,cn=0;dM.forEach(function(m){u+=m.u;c+=m.c;un+=m.un;cn+=m.cn});return {u:u,c:c,un:un,cn:cn}}
+  function dInfo(){
+    var m=dM[dSel];if(!m){$('dInfo').textContent='';return}
+    var t=m.u+m.c,n=m.un+m.cn,p=dM[dSel-1],pt=p?p.u+p.c:0,vs='';
+    if(p){vs=pt>0?('<br>vs '+p.l+': '+(t>=pt?'▲ ':'▼ ')+Math.abs(Math.round((t-pt)/pt*100))+'%'):(t>0?'<br>vs '+p.l+': new sales':'')}
+    $('dInfo').innerHTML='<b class="t">'+m.l+' '+m.y+' · '+inr(t)+'</b><br><span class="ddot cU"></span> UPI '+inr(m.u)+' ('+pct(m.u,t)+'%) · <span class="ddot cC"></span> Cash '+inr(m.c)+' ('+pct(m.c,t)+'%)<br>'+n+' bill'+(n===1?'':'s')+(n?' · avg '+inr(Math.round(t/n)):'')+vs;
+    $('dInfo').style.animation='none';void $('dInfo').offsetWidth;$('dInfo').style.animation=''}
+  function dSet(i){
+    if(i===dSel)return;dSel=i;
+    document.querySelectorAll('#dBars .dcol').forEach(function(c,k){c.classList.toggle('on',k===i)});dInfo()}
+  function renderDash(){
+    var D=dashData(),M=D.M,mx=0;dM=M;
+    M.forEach(function(m){if(m.u+m.c>mx)mx=m.u+m.c});
+    var S=dashSums(),tot=S.u+S.c,n=S.un+S.cn;
+    $('dToday').textContent=inr(D.T.today);$('dMonth').textContent=inr(D.T.month);$('dAll').textContent=inr(D.T.all);
+    document.querySelectorAll('#dRange .chip').forEach(function(b){b.classList.toggle('on',+b.getAttribute('data-r')===dRange)});
+    $('dTot').textContent=inr(tot);$('dUpi').textContent=inr(S.u);$('dCash').textContent=inr(S.c);
+    $('dTotX').innerHTML=n+' bill'+(n===1?'':'s')+' in the last '+dRange+' months'+(n?'<br>Average bill '+inr(Math.round(tot/n)):'');
+    $('dUpiX').innerHTML=pct(S.u,tot)+'% of sales<br>'+S.un+' bill'+(S.un===1?'':'s')+(S.un?' · avg '+inr(Math.round(S.u/S.un)):'');
+    $('dCashX').innerHTML=pct(S.c,tot)+'% of sales<br>'+S.cn+' bill'+(S.cn===1?'':'s')+(S.cn?' · avg '+inr(Math.round(S.c/S.cn)):'');
+    $('dEmpty').hidden=tot>0;
+    $('dlU').textContent='UPI · '+inr(S.u)+' ('+pct(S.u,tot)+'%)';$('dlC').textContent='Cash · '+inr(S.c)+' ('+pct(S.c,tot)+'%)';
+    var C=2*Math.PI*52,ul=tot?C*S.u/tot:0,cl=tot?C*S.c/tot:0;
+    $('dcU').setAttribute('stroke-dasharray',ul+' '+C);$('dcU').setAttribute('stroke-dashoffset','0');
+    $('dcC').setAttribute('stroke-dasharray',cl+' '+C);$('dcC').setAttribute('stroke-dashoffset',String(-ul));
+    segHot(null);
+    var p=Math.pow(10,Math.floor(Math.log10(mx||1))),step=p/2,nm=mx?Math.ceil(mx/step)*step:1,g='',i;
+    for(i=0;i<=4;i++)g+='<div class="dgl" style="bottom:'+(i*25)+'%"><span>'+short(nm*i/4)+'</span></div>';
+    $('dGrid').innerHTML=g;
+    var H='';
+    M.forEach(function(m,k){
+      var t=m.u+m.c,h=t?Math.max(4,Math.round(t/nm*150)):0,uh=t?Math.round(h*m.u/t):0,ch=h-uh;
+      H+='<div class="dcol" data-i="'+k+'"><div class="dval">'+(t?short(t):'')+'</div><div class="dbar" style="height:'+h+'px"><i class="dcI" style="height:'+ch+'px"></i><i class="duI" style="height:'+uh+'px"></i></div><div class="dlab">'+m.l+'</div></div>'});
+    $('dBars').innerHTML=H;
+    dSel=-1;dSet(M.length-1);
+  }
+  $('dRange').addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.chip');if(!b)return;dRange=+b.getAttribute('data-r');renderDash()});
+  $('dBars').addEventListener('pointerover',function(e){var c=e.target.closest&&e.target.closest('.dcol');if(c)dSet(+c.getAttribute('data-i'))});
+  $('dBars').addEventListener('click',function(e){var c=e.target.closest&&e.target.closest('.dcol');if(c)dSet(+c.getAttribute('data-i'))});
+  document.querySelectorAll('.dtile').forEach(function(t){t.addEventListener('click',function(){t.classList.toggle('open')})});
+  document.querySelectorAll('[data-seg]').forEach(function(e){
+    e.addEventListener('pointerenter',function(){segHot(e.getAttribute('data-seg'))});
+    e.addEventListener('pointerleave',function(){segHot(null)});
+    e.addEventListener('click',function(){segHot(e.getAttribute('data-seg'))})});
+
+  /* ---- Backup / restore ---- */
+  function dlFile(name,text){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type:'application/json'}));a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},1000)}
+  $('bkBtn').onclick=async function(){
+    $('bkMsg').textContent='Preparing backup…';
+    try{var d=await api('backup');dlFile('srfab-backup-'+dkey(Date.now())+'.json',JSON.stringify(d,null,1));$('bkMsg').textContent='Backup downloaded ('+d.bills.length+' bills).'}
+    catch(e){$('bkMsg').textContent='Could not make the backup.'}
+  };
+  $('rsBtn').onclick=async function(){if(!(await guard()))return;$('rsFile').value='';$('rsFile').click()};
+  $('rsFile').onchange=async function(){
+    var f=this.files&&this.files[0];if(!f)return;
+    try{
+      var d=JSON.parse(await f.text());
+      if(!d||d.app!=='srfab'||!Array.isArray(d.bills)){$('bkMsg').textContent='This is not an SR FAB backup file.';return}
+      $('bkMsg').textContent='Restoring '+d.bills.length+' bills…';
+      var r=await api('restore',{method:'POST',body:d});
+      $('bkMsg').textContent='Restored '+r.bills+' bills (existing bills were kept).';pull(true);
+    }catch(e){$('bkMsg').textContent='Could not restore this file.'}
+  };
+
+  /* ---- Auto-save ONE backup file on this PC (Chrome / Edge) ---- */
+  var bkH=null,bkT=null,bkBusy=false,bkAgain=false,bkReady=false,bkLast=0,bkErr='',bkAsked=false;
+  var bkOK=!!window.showSaveFilePicker;
+  function idb(){return new Promise(function(ok,no){var r=indexedDB.open('srfab-bk',1);r.onupgradeneeded=function(){r.result.createObjectStore('k')};r.onsuccess=function(){ok(r.result)};r.onerror=function(){no(r.error)}})}
+  async function idbGet(k){var d=await idb();return new Promise(function(ok,no){var q=d.transaction('k').objectStore('k').get(k);q.onsuccess=function(){ok(q.result)};q.onerror=function(){no(q.error)}})}
+  async function idbSet(k,v){var d=await idb();return new Promise(function(ok,no){var t=d.transaction('k','readwrite');if(v===undefined)t.objectStore('k').delete(k);else t.objectStore('k').put(v,k);t.oncomplete=ok;t.onerror=function(){no(t.error)}})}
+  async function bkPerm(ask){
+    if(!bkH)return false;var o={mode:'readwrite'};
+    try{if(await bkH.queryPermission(o)==='granted')return true;if(ask&&await bkH.requestPermission(o)==='granted')return true}catch(e){}
+    return false}
+  async function bkUI(){
+    var el=$('bkAuto');if(!el)return;
+    if(!bkOK){el.textContent='Not available on this device. Open the app in Chrome or Edge on your PC.';$('bkPick').hidden=true;$('bkStop').hidden=true;return}
+    $('bkStop').hidden=!bkH;
+    if(!bkH){el.textContent='Not set up yet.';$('bkPick').querySelector('b').textContent='Choose backup file';return}
+    var g=await bkPerm(false);
+    $('bkPick').querySelector('b').textContent=g?'Change backup file':'Allow auto-save again';
+    el.textContent=bkErr||((g?'Saving to: ':'Needs one click to allow: ')+bkH.name+(bkLast?' · last saved '+new Date(bkLast).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}):''))}
+  function bkData(){return {app:'srfab',version:1,exportedAt:new Date().toISOString(),config:dbCfg(),bills:hist.slice().sort(function(a,b){return a.t-b.t})}}
+  async function bkSave(){
+    if(!bkH||!bkReady)return;
+    if(bkBusy){bkAgain=true;return}
+    if(!(await bkPerm(false))){bkUI();return}
+    bkBusy=true;
+    try{var w=await bkH.createWritable();await w.write(JSON.stringify(bkData(),null,1));await w.close();bkLast=Date.now();bkErr=''}
+    catch(e){bkErr='Could not save the backup file. Choose the file again.'}
+    bkBusy=false;bkUI();
+    if(bkAgain){bkAgain=false;bkSave()}}
+  function bkQueue(){if(!bkH)return;clearTimeout(bkT);bkT=setTimeout(bkSave,1500)}
+  var _sh=saveHist;saveHist=function(){_sh.apply(this,arguments);bkQueue()};
+  var _pc=pushCfg;pushCfg=function(){_pc.apply(this,arguments);bkQueue()};
+  $('bkPick').onclick=async function(){
+    if(!bkOK)return;
+    try{
+      if(bkH&&!(await bkPerm(false))){if(await bkPerm(true)){bkErr='';bkSave();bkUI();return}}
+      var h=await window.showSaveFilePicker({suggestedName:'srfab-backup.json',types:[{description:'SR FAB backup',accept:{'application/json':['.json']}}]});
+      bkH=h;await idbSet('fh',h);bkErr='';
+      if(!bkReady){$('bkAuto').textContent='Saved the location. The first backup is written once the data has loaded.'}
+      await bkSave();bkUI()
+    }catch(e){if(e&&e.name!=='AbortError'){bkErr='Could not use that file.';bkUI()}}
+  };
+  $('bkStop').onclick=async function(){bkH=null;bkErr='';try{await idbSet('fh',undefined)}catch(e){}bkUI()};
+  document.addEventListener('visibilitychange',function(){if(document.hidden){clearTimeout(bkT);bkSave()}});
+  window.addEventListener('pagehide',function(){clearTimeout(bkT);bkSave()});
+  document.addEventListener('pointerdown',function(){
+    if(bkAsked||!bkH)return;bkAsked=true;
+    bkPerm(true).then(function(g){if(g)bkSave();bkUI()})},{once:true});
+  if(bkOK)idbGet('fh').then(function(h){if(h){bkH=h}bkUI()}).catch(function(){bkUI()});else bkUI();
   function csvCell(v){v=String(v==null?'':v);return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v}
   function expLabel(){var n=Object.keys(sel).length;return n?'⬇ Download selected ('+n+')':'⬇ Download Excel'}
   function flash(t){var b=$('expBtn');b.textContent=t;setTimeout(function(){b.textContent=expLabel()},2500)}
@@ -895,18 +1090,6 @@ select{width:100%;font:inherit;font-size:17px;padding:12px;border:1.5px solid va
     }
   };
   $('lgPw').addEventListener('keydown',function(e){if(e.key==='Enter')$('lgBtn').click()});
-  var sheetsConnected=false,sheetsSending=false,sheetQueue=[],sheetBackfillKey='';
-  try{sheetQueue=JSON.parse(localStorage.getItem('srfab_sheet_queue')||'[]');sheetBackfillKey=localStorage.getItem('srfab_sheet_backfill')||''}catch(e){}
-  if(!Array.isArray(sheetQueue))sheetQueue=[];
-  function saveSheetQueue(){try{localStorage.setItem('srfab_sheet_queue',JSON.stringify(sheetQueue))}catch(e){}}
-  function sheetRecord(bill){return {id:String(bill.t)+'-'+String(bill.no||0),createdAt:bill.t,billNo:bill.no||0,customer:bill.c||'',mobile:bill.w||'',method:bill.m,total:bill.total,items:(bill.items||[]).map(function(item){return (item.n?item.n+' ':'')+item.l+' m × ₹'+item.r+' = ₹'+item.a}).join('; ')}}
-  function queueSheetBill(bill){if(!sheetsConnected||!bill||bill.x)return;var record=sheetRecord(bill);if(sheetQueue.some(function(item){return item.id===record.id}))return;sheetQueue.push(record);saveSheetQueue();flushSheetQueue()}
-  async function flushSheetQueue(){if(!sheetsConnected||sheetsSending||!sheetQueue.length)return;sheetsSending=true;while(sheetsConnected&&sheetQueue.length){try{var response=await fetch('/api/sheets/append',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(sheetQueue[0])});if(!response.ok)throw new Error('Could not save this bill');await response.json();sheetQueue.shift();saveSheetQueue();$('sheetsStatus').textContent=sheetQueue.length?'Saving remaining bills…':'Connected · bills save automatically'}catch(e){$('sheetsStatus').textContent='Connected · waiting to sync '+sheetQueue.length+' bill'+(sheetQueue.length===1?'':'s');break}}sheetsSending=false}
-  async function refreshSheetsStatus(){try{var response=await fetch('/api/sheets/status'),status=await response.json();sheetsConnected=!!status.connected;$('sheetsConnect').hidden=sheetsConnected;$('sheetsDisconnect').hidden=!sheetsConnected;$('sheetsOpen').hidden=!sheetsConnected;if(sheetsConnected){$('sheetsOpen').href=status.spreadsheetUrl;$('sheetsStatus').textContent='Connected · bills save automatically';var key=status.spreadsheetUrl;if(sheetBackfillKey!==key){hist.slice().reverse().filter(function(bill){return !bill.x}).forEach(function(bill){var record=sheetRecord(bill);if(!sheetQueue.some(function(item){return item.id===record.id}))sheetQueue.push(record)});sheetBackfillKey=key;try{localStorage.setItem('srfab_sheet_backfill',key)}catch(e){}saveSheetQueue()}flushSheetQueue()}else{$('sheetsStatus').textContent='Not connected · connect to save paid bills'}}catch(e){sheetsConnected=false;$('sheetsStatus').textContent='Google Sheets connection unavailable'}}
-  $('sheetsConnect').onclick=async function(){try{var headers={};if(TOK)headers.authorization='Bearer '+TOK;var response=await fetch('/api/sheets/auth',{headers:headers}),result=await response.json();if(!response.ok)throw new Error(result.error||'Unable to start Google sign-in');window.location.href=result.url}catch(e){$('sheetsStatus').textContent=e.message==='login required'?'Please log in to your billing account first':e.message}};
-  $('sheetsDisconnect').onclick=async function(){await fetch('/api/sheets/disconnect',{method:'POST'});sheetsConnected=false;$('sheetsConnect').hidden=false;$('sheetsDisconnect').hidden=true;$('sheetsOpen').hidden=true;$('sheetsStatus').textContent='Disconnected'};
-  window.addEventListener('online',flushSheetQueue);
-  refreshSheetsStatus();
   $('outBtn').onclick=function(){$('modal3').classList.add('on')};
   $('loCancel').onclick=function(){$('modal3').classList.remove('on')};
   $('loOk').onclick=function(){
@@ -938,21 +1121,30 @@ select{width:100%;font:inherit;font-size:17px;padding:12px;border:1.5px solid va
       var map={};d.bills.forEach(function(b){if(b&&b.t)map[b.t]=b});
       if(first)hist.forEach(function(h){if(!map[h.t]){map[h.t]=h;pushBill(h)}});
       hist=Object.keys(map).map(function(k){return map[k]}).sort(function(a,b){return b.t-a.t});
-      numberAll();saveHist();renderHist();gwSchedule();
+      bkReady=true;numberAll();saveHist();renderHist();gwSchedule();if(document.body.className==='t-dash')renderDash();
       syncSt('☁ Synced '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}));
     }catch(e){if(e.status!==401)syncSt('⚠ Can’t reach the server – showing this phone’s data')}
   }
   function startSync(){clearInterval(syncT);syncSt('Connecting…');pull(true);syncT=setInterval(function(){if(!document.hidden)pull(false)},20000)}
   document.addEventListener('visibilitychange',function(){if(!document.hidden&&online)pull(false)});
 
-  /* ---- Payment confirmation sound ---- */
-  var snd=true,okT=null,gw=null,gwT=null;
+  /* ---- PhonePe auto-confirm payment ---- */
+  var snd=true,actx=null,okT=null,gw=null,gwT=null;
   try{snd=localStorage.getItem('srfabs_snd')!=='0'}catch(e){}
-  var paymentSound=new Audio('/sounds/payment-confirmed.mp3');paymentSound.preload='auto';
   function sndUI(){$('sndBtn').firstChild.textContent=snd?'🔊':'🔇'}
   $('sndBtn').onclick=function(){snd=!snd;try{localStorage.setItem('srfabs_snd',snd?'1':'0')}catch(e){}sndUI();if(snd)chime()};
   sndUI();
-  function chime(){try{paymentSound.currentTime=0;var playback=paymentSound.play();if(playback)playback.catch(function(){})}catch(e){}}
+  function chime(){
+    try{
+      var AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
+      if(!actx)actx=new AC();if(actx.state==='suspended')actx.resume();
+      [[659.25,0],[830.61,.14],[987.77,.28],[1318.5,.46]].forEach(function(n){
+        var o=actx.createOscillator(),g=actx.createGain(),t=actx.currentTime+n[1];
+        o.type='sine';o.frequency.value=n[0];
+        g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.28,t+.02);g.gain.exponentialRampToValueAtTime(.001,t+(n[1]>.4?.9:.4));
+        o.connect(g);g.connect(actx.destination);o.start(t);o.stop(t+1)})
+    }catch(e){}
+  }
   function approved(amt,method,note){
     $('okAmt').textContent=inr(amt);
     $('okInfo').textContent=(method==='UPI'?'Paid by UPI':'Paid in cash')+(note?' · '+note:'')+' · '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
